@@ -22,3 +22,44 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# Maven specific files
+target/
+*.log
+*.jar
+*.war
+*.zip
+*.tar.gz
+*.tar
+*.hprof
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Eclipse specific files
+.project
+.classpath
+.settings/
+
+# NetBeans specific files
+nbproject/
+
+# VSCode specific files
+.vscode/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Docker and container-related files
+.docker/
+docker-compose.override.yml
+
+# Spring Boot specific
+spring.log

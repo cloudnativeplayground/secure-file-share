@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  # Spring Boot application service
+  secure-file-share:
+    build: .
+    container_name: secure-file-share
+    ports:
+      - "8080:8080"  # Map port 8080 of the container to the host machine's port 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_H2_CONSOLE_ENABLED: "true"
+      SPRING_H2_CONSOLE_PATH: /h2-console
+      SPRING_SECURITY_USER_NAME: admin
+      SPRING_SECURITY_USER_PASSWORD: admin123
+      SPRING_SECURITY_USER_ROLES: ADMIN
+    volumes:
+      - .:/app  # Bind mount the current directory to /app in the container
+    networks:
+      - secure-file-network
+
+  # H2 database service (in-memory database, handled by Spring Boot)
+  h2-db:
+    image: h2database/h2:1.4.200
+    container_name: h2-db
+    ports:
+      - "8082:8082"  # Expose H2 console port
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    networks:
+      - secure-file-network
+
+networks:
+  secure-file-network:
+    driver: bridge
+

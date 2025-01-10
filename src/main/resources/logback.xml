@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Console Appender for logging output to the console -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Appender for logging to a file -->
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>secure-file-share.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger configuration -->
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+
+    <!-- Custom logger for your application -->
+    <logger name="com.securefileshare" level="DEBUG">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </logger>
+
+    <!-- Logger configuration for Spring Boot's web components -->
+    <logger name="org.springframework.web" level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </logger>
+
+</configuration>
+
