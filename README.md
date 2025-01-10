@@ -1,6 +1,4 @@
-Here’s a detailed `README.md` file for your **Secure File Sharing System** project with all the necessary sections you mentioned:
 
----
 
 # Secure File Sharing System
 
